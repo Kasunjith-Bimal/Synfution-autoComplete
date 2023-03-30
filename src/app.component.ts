@@ -47,7 +47,7 @@ export class AppComponent {
   // set the height of the popup element
   public height: string = '250px';
   // bind the change event
-  public onChange(args: any): void {
+  public onChange(args: any, user: any): void {
     let valueEle: HTMLInputElement = document.getElementsByClassName(
       'e-input'
     )[0] as HTMLInputElement;
@@ -59,6 +59,14 @@ export class AppComponent {
     ) {
       valueEle.value = '';
     }
+    // if (args.itemData) {
+    //   this.users.forEach((x) => {
+    //     if (x.Id == user.Id) {
+    //       x.UserName = args.itemData.UserName;
+    //       x.Email = args.itemData.Email;
+    //     }
+    //   });
+    // }
   }
   public selectedContact(event, user: any) {
     if (event.itemData) {
