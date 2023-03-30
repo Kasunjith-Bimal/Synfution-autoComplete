@@ -12,6 +12,7 @@
         [fields]="fieldsForSuggestionName"
         (change)="onChange($event, user)"
         (select)="selectedContact($event, user)"
+        (filtering)="filtering($event)"
       >
         <ng-template #headerTemplate> </ng-template>
         <ng-template #itemTemplate let-data>
@@ -36,6 +37,7 @@
         [fields]="fieldsForSuggestionEmail"
         (change)="onChange($event, user)"
         (select)="selectedContact($event, user)"
+        (filtering)="filtering($event)"
       >
         <ng-template #headerTemplate> </ng-template>
         <ng-template #itemTemplate let-data>
@@ -52,4 +54,12 @@
       </ejs-autocomplete>
     </div>
   </div>
+</div>
+<u>
+  .................................................................................</u
+>
+<div *ngFor="let user of users">
+  <div style="padding-bottom:20px"></div>
+  <div>User name : {{ user.UserName }}</div>
+  <div>Email : {{ user.Email }}</div>
 </div>

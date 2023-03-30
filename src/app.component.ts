@@ -3,6 +3,7 @@
  */
 import { Component, ViewChild } from '@angular/core';
 import { AutoCompleteComponent } from '@syncfusion/ej2-angular-dropdowns';
+import { Predicate, Query } from '@syncfusion/ej2-data';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -31,8 +32,11 @@ export class AppComponent {
     { Id: 3, Email: '', UserName: '' },
   ];
 
-  public fieldsForSuggestionName: Object = { value: 'UserName' };
-  public fieldsForSuggestionEmail: Object = { value: 'Email' };
+  //public fieldsForSuggestionName: Object = { value: 'UserName' };
+  //public fieldsForSuggestionEmail: Object = { value: 'Email' };
+
+  public fieldsForSuggestionName: Object = { value: 'Email', text: 'UserName' };
+  public fieldsForSuggestionEmail: Object = { value: 'Email', text: 'Email' };
 
   // maps the appropriate column to fields property
   public fields: Object = { value: 'UserName' };
@@ -65,5 +69,13 @@ export class AppComponent {
         }
       });
     }
+  }
+
+  public filtering(args) {
+    let predicate = new Predicate('Email', 'contains', args.text, true);
+    predicate = predicate.or('UserName', 'contains', args.text, true);
+    let query = new Query();
+    query = args.text !== '' ? query.where(predicate) : query;
+    args.updateData(this.sportsData, query);
   }
 }
