@@ -10,7 +10,7 @@
         [(value)]="user.UserName == null ? '' : user.UserName"
         [placeholder]="waterMark"
         [fields]="fieldsForSuggestionName"
-        (change)="onChange($event)"
+        (change)="onChange($event, user)"
         (select)="selectedContact($event, user)"
       >
         <ng-template #headerTemplate> </ng-template>
@@ -34,7 +34,7 @@
         [(value)]="user.Email == null ? '' : user.Email"
         [placeholder]="waterMark1"
         [fields]="fieldsForSuggestionEmail"
-        (change)="onChange($event)"
+        (change)="onChange($event,user)"
         (select)="selectedContact($event, user)"
       >
         <ng-template #headerTemplate> </ng-template>
