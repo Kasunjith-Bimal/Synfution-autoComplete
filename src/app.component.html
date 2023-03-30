@@ -34,7 +34,7 @@
         [(value)]="user.Email == null ? '' : user.Email"
         [placeholder]="waterMark1"
         [fields]="fieldsForSuggestionEmail"
-        (change)="onChange($event,user)"
+        (change)="onChange($event, user)"
         (select)="selectedContact($event, user)"
       >
         <ng-template #headerTemplate> </ng-template>
