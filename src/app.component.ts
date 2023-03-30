@@ -35,7 +35,10 @@ export class AppComponent {
   //public fieldsForSuggestionName: Object = { value: 'UserName' };
   //public fieldsForSuggestionEmail: Object = { value: 'Email' };
 
-  public fieldsForSuggestionName: Object = { value: 'Email', text: 'UserName' };
+  public fieldsForSuggestionName: Object = {
+    value: 'UserName',
+    text: 'UserName',
+  };
   public fieldsForSuggestionEmail: Object = { value: 'Email', text: 'Email' };
 
   // maps the appropriate column to fields property
@@ -59,14 +62,6 @@ export class AppComponent {
     ) {
       valueEle.value = '';
     }
-    // if (args.itemData) {
-    //   this.users.forEach((x) => {
-    //     if (x.Id == user.Id) {
-    //       x.UserName = args.itemData.UserName;
-    //       x.Email = args.itemData.Email;
-    //     }
-    //   });
-    // }
   }
   public selectedContact(event, user: any) {
     if (event.itemData) {
@@ -85,5 +80,9 @@ export class AppComponent {
     let query = new Query();
     query = args.text !== '' ? query.where(predicate) : query;
     args.updateData(this.sportsData, query);
+  }
+
+  AddUser(length: number) {
+    this.users.push({ Id: length + 1, Email: '', UserName: '' });
   }
 }

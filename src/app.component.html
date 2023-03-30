@@ -1,8 +1,9 @@
 <div class="control-section">
+  <button (click)="AddUser(users.length)">Add User</button>
   <div class="col-lg-8 content-wrapper" *ngFor="let user of users">
     <div id="content" style="margin: 0 auto; width:500px">
       <div style="padding-bottom:20px"></div>
-
+      <span class="contactname"> User id : {{ user.Id }} </span>
       <ejs-autocomplete
         id="games"
         #sample
