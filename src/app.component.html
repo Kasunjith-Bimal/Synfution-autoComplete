@@ -1,41 +1,55 @@
 <div class="control-section">
-  <div class="col-lg-8 content-wrapper" style="height: 350px">
-    <div id="content" style="margin: 0 auto; width:250px; padding-top: 30px">
+  <div class="col-lg-8 content-wrapper" *ngFor="let user of users">
+    <div id="content" style="margin: 0 auto; width:500px">
+      <div style="padding-bottom:20px"></div>
+
       <ejs-autocomplete
         id="games"
         #sample
         [dataSource]="sportsData"
-        [(value)]="value"
+        [(value)]="user.UserName == null ? '' : user.UserName"
         [placeholder]="waterMark"
-        [fields]="fields"
+        [fields]="fieldsForSuggestionName"
         (change)="onChange($event)"
-        (select)="selectedContact($event)"
-      ></ejs-autocomplete>
-    </div>
-  </div>
-  <div class="col-lg-4 property-section">
-    <div class="property-panel-section">
-      <div class="property-panel-header">Properties</div>
-      <div class="property-panel-content">
-        <table
-          id="property"
-          title="Properties"
-          style="width: 100%; margin:10px"
-        >
-          <tr>
-            <td style="padding:5px; width:25%">Value</td>
-            <td>
-              :<input
-                type="text"
-                id="values"
-                [(ngModel)]="value"
-                class="e-input"
-                style="margin-left:10px; width:140px"
-              />
-            </td>
-          </tr>
-        </table>
-      </div>
+        (select)="selectedContact($event, user)"
+      >
+        <ng-template #headerTemplate> </ng-template>
+        <ng-template #itemTemplate let-data>
+          <div class="suggestitem">
+            <div class="contact-image">
+              <!-- <img [src]="getuserImages(data)" alt=""> -->
+            </div>
+            <div class="contactdetail">
+              <span class="contactname"> User name : {{ data.UserName }}</span>
+              <span class="contactemail">Email : {{ data.Email }}</span>
+            </div>
+          </div>
+        </ng-template>
+      </ejs-autocomplete>
+
+      <ejs-autocomplete
+        id="games"
+        #sample
+        [dataSource]="sportsData"
+        [(value)]="user.Email == null ? '' : user.Email"
+        [placeholder]="waterMark1"
+        [fields]="fieldsForSuggestionEmail"
+        (change)="onChange($event)"
+        (select)="selectedContact($event, user)"
+      >
+        <ng-template #headerTemplate> </ng-template>
+        <ng-template #itemTemplate let-data>
+          <div class="suggestitem">
+            <div class="contact-image">
+              <!-- <img [src]="getuserImages(data)" alt=""> -->
+            </div>
+            <div class="contactdetail">
+              <span class="contactname"> User name : {{ data.UserName }}</span>
+              <span class="contactemail">Email : {{ data.Email }}</span>
+            </div>
+          </div>
+        </ng-template>
+      </ejs-autocomplete>
     </div>
   </div>
 </div>

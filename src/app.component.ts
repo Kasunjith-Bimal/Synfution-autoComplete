@@ -22,13 +22,24 @@ export class AppComponent {
     { Email: 'H@gmail.com', UserName: 'Rugby' },
     { Email: 'I@gmail.com', UserName: 'Snooker' },
     { Email: 'R@gmail.com', UserName: 'Tennis' },
-    { Email: 'F@gmail.com', UserName: 'American' },
+    { Email: 'Fr@gmail.com', UserName: 'American' },
   ];
+
+  public users: any[] = [
+    { Id: 1, Email: '', UserName: '' },
+    { Id: 2, Email: '', UserName: '' },
+    { Id: 3, Email: '', UserName: '' },
+  ];
+
+  public fieldsForSuggestionName: Object = { value: 'UserName' };
+  public fieldsForSuggestionEmail: Object = { value: 'Email' };
+
   // maps the appropriate column to fields property
   public fields: Object = { value: 'UserName' };
   public value: string = '';
   // set the placeholder to AutoComplete input
   public waterMark: string = 'e.g. kasun';
+  public waterMark1: string = 'e.g. kasunysoft@gmail.com';
   // set the height of the popup element
   public height: string = '250px';
   // bind the change event
@@ -45,7 +56,14 @@ export class AppComponent {
       valueEle.value = '';
     }
   }
-  public selectedContact(event) {
-    console.log(event);
+  public selectedContact(event, user: any) {
+    if (event.itemData) {
+      this.users.forEach((x) => {
+        if (x.Id == user.Id) {
+          x.UserName = event.itemData.UserName;
+          x.Email = event.itemData.Email;
+        }
+      });
+    }
   }
 }
